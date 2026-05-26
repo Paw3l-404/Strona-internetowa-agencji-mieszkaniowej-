@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SzybkieMieszkanie.pl - Strona Główna</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- WYMUSZENIE CIEMNEGO MOTYWU (spójność z szczegoly.php i konto.html) --- */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Nagłówek */
+        header {
+            background-color: #1e1e1e;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3b82f6; /* Niebieski */
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: #bb86fc; }
+
+        /* Przycisk logowania w menu */
+        .btn-login {
+            background-color: #3b82f6;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .btn-login:hover { background-color: #2563eb; }
+
+        /* Sekcja Hero (Wielki napis na początku) */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* --- SEKCJA Z KAFLAMI MIESZKAŃ --- */
+        #oferta {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2.sekcja-tytul {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Kontener na kafelki */
+        #lista-ofert {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Wygląd pojedynczego kafelka */
+        .karta-mieszkania {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 15px;
+            width: 300px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .karta-mieszkania:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+            border-color: #bb86fc;
+        }
+
+        .karta-zdjecie {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .karta-zdjecie img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .karta-mieszkania:hover .karta-zdjecie img {
+            transform: scale(1.1);
+        }
+
+        .karta-tresc {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .karta-tresc h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+        }
+
+        .info-linia {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .status-badge {
+            color: #bb86fc;
+            font-weight: bold;
+        }
+
+        .cena-badge {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        .btn-szczegoly {
+            display: inline-block;
+            background-color: #bb86fc;
+            color: #000;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            align-self: flex-end; /* Przycisk do prawej */
+            transition: background 0.3s;
+        }
+
+        .btn-szczegoly:hover {
+            background-color: #9965f4;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">SzybkieMieszkanie.pl</a>
+        <nav>
+            <a href="index.html">Strona główna</a>
+            <a href="#oferta">Oferta</a>
+            <a href="konto.html" class="btn-login">Zaloguj się</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Znajdź swoje wymarzone miejsce</h1>
+        <p>Przejrzyj tysiące ofert apartamentów w centrum miasta i cichych okolicach.</p>
+    </div>
+
+    <section id="oferta">
+        <h2 class="sekcja-tytul">Nasze Mieszkania</h2>
+
+        <div id="lista-ofert">
+            <p style="color: #888; font-size: 1.2rem;">Ładowanie ofert z bazy...</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 SzybkieMieszkanie.pl. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+
+    <script>
+        // Lista ładnych zdjęć z internetu (Unsplash)
+        const zdjeciaZInternetu = [
+            'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1484154218962-a1c002085aac?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80',
+            'https://images.unsplash.com/photo-1486304873000-235643847519?auto=format&fit=crop&w=500&q=80'
+        ];
+
+        // Pobieramy dane z Twojego pliku PHP
+        fetch('pobierz_oferty.php')
+            .then(response => response.json())
+            .then(data => {
+                const kontener = document.getElementById('lista-ofert');
+                kontener.innerHTML = ''; // Usuwamy napis "Ładowanie..."
+
+                if (data.length === 0) {
+                    kontener.innerHTML = '<p style="color: #ff5555;">Nie udało się pobrać ofert lub baza jest pusta.</p>';
+                    return;
+                }
+
+                data.forEach(mieszkanie => {
+                    // Wybieramy zdjęcie (zawsze to samo dla danego ID)
+                    const indexZdjecia = mieszkanie.id_mieszkania % zdjeciaZInternetu.length;
+                    const fotkaUrl = zdjeciaZInternetu[indexZdjecia];
+
+                    // Formatowanie ceny (dodanie spacji)
+                    const cena = Number(mieszkanie.cena_wynajmu).toLocaleString('pl-PL');
+
+                    // Tworzymy kafelek HTML
+                    const kafelek = `
+                        <div class="karta-mieszkania">
+                            <a href="szczegoly.php?id=${mieszkanie.id_mieszkania}" class="karta-zdjecie">
+                                <img src="${fotkaUrl}" alt="Mieszkanie">
+                            </a>
+                            <div class="karta-tresc">
+                                <h3>Mieszkanie nr ${mieszkanie.id_mieszkania}</h3>
+                                
+                                <div class="info-linia">
+                                    <span>Status:</span>
+                                    <span class="status-badge">${mieszkanie.status_mieszkania}</span>
+                                </div>
+                                <div class="info-linia">
+                                    <span>Metraż:</span>
+                                    <span>${mieszkanie.metraz_mieszkania} m²</span>
+                                </div>
+                                <div class="info-linia">
+                                    <span>Pokoje:</span>
+                                    <span>${mieszkanie.liczba_pokoi}</span>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto;">
+                                    <div class="cena-badge">${cena} PLN</div>
+                                    <a href="szczegoly.php?id=${mieszkanie.id_mieszkania}" class="btn-szczegoly">Szczegóły</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    kontener.innerHTML += kafelek;
+                });
+            })
+            .catch(error => {
+                console.error('Błąd:', error);
+                document.getElementById('lista-ofert').innerHTML = '<p style="color: #ff5555; text-align:center;">Błąd połączenia z bazą danych.</p>';
+            });
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

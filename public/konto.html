@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaloguj się - SzybkieMieszkanie.pl</title>
+    
+    <style>
+        /* --- 1. GŁÓWNY CIEMNY MOTYW (Taki sam jak w szczegółach) --- */
+        body {
+            background-color: #121212; /* Ciemne tło strony */
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- 2. NAGŁÓWEK (Prosty pasek na górze) --- */
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3b82f6; /* Niebieski kolor logo (jak w oryginale) */
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        .nav-link:hover { color: #bb86fc; }
+
+        /* --- 3. KARTA LOGOWANIA (Środek ekranu) --- */
+        .login-box {
+            background-color: #1e1e1e; /* Ciemnoszara karta */
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0, 0.7);
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        /* --- 4. POLA FORMULARZA (Inputy) --- */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #2d2d2d; /* Ciemne tło pola */
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #fff; /* Biały tekst wpisywania */
+            font-size: 16px;
+            box-sizing: border-box; /* Ważne, żeby padding nie psuł szerokości */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #bb86fc; /* Fioletowa ramka po kliknięciu */
+        }
+
+        /* --- 5. PRZYCISK LOGOWANIA --- */
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #0056b3; /* Ciemniejszy niebieski (klasyczny dla logowania) */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #004494;
+        }
+
+        /* --- 6. LINKI POMOCNICZE --- */
+        .pomoc-linki {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .pomoc-linki a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .pomoc-linki a:hover { text-decoration: underline; }
+
+        /* --- DODANE: Ukrywanie formularzy --- */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">SzybkieMieszkanie.pl</a>
+        <nav>
+            <a href="index.html" class="nav-link">Strona główna</a>
+            <a href="#" class="nav-link">Oferta</a>
+        </nav>
+    </header>
+
+    <div class="login-box">
+        <!-- Formularz Logowania (domyślnie widoczny) -->
+        <div id="login-section">
+            <h2>Zaloguj się</h2>
+            <form id="loginForm" action="#" method="POST">
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="twoj@email.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Hasło</label>
+                    <input type="password" id="password" name="password" placeholder="Hasło" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Zaloguj się</button>
+
+                <div id="message" style="color: red; margin-top: 10px;"></div>
+
+                <div class="pomoc-linki">
+                    <p>Nie masz konta? <a href="#" id="switch-to-register">Zarejestruj się</a></p>
+                    <p><a href="index.html">Powrót do strony głównej</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Formularz Rejestracji (domyślnie ukryty) -->
+        <div id="register-section" class="hidden">
+            <h2>Zarejestruj się</h2>
+            <form id="registerForm" action="#" method="POST">
+                
+                <div class="input-group">
+                    <label for="imie">Imię</label>
+                    <input type="text" id="imie" name="imie" placeholder="Jan" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="nazwisko">Nazwisko</label>
+                    <input type="text" id="nazwisko" name="nazwisko" placeholder="Kowalski" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" name="reg-email" placeholder="twoj@email.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="reg-password">Hasło</label>
+                    <input type="password" id="reg-password" name="reg-password" placeholder="Hasło (min. 6 znaków)" required minlength="6">
+                </div>
+
+                <button type="submit" class="btn-submit">Zarejestruj się</button>
+
+                <div id="reg-message" style="color: red; margin-top: 10px;"></div>
+
+                <div class="pomoc-linki">
+                    <p>Masz już konto? <a href="#" id="switch-to-login">Zaloguj się</a></p>
+                    <p><a href="index.html">Powrót do strony głównej</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
